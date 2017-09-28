@@ -32,7 +32,7 @@
         }
 
         hunt() {
-            if ((Math.floor((Math.random()) * 2)) == 0) {
+            if ((Math.floor((Math.random()) * 10)) == 0) {
                 return this.food += 100
             } else {
                 return this.food
@@ -43,10 +43,10 @@
             //requirements were 20 but I changed it to 50 because not enough people were getting sick
             if (this.food > 50) {
                 this.food -= 20
-                return this.isHealthy
+                return true
             } else {
-
-            return false
+                this.isHealthy = false
+                return false
             }
         }
 
@@ -73,16 +73,7 @@
             }
         }
 
-        isQuarantined(): boolean {
-            for (let i=0; i < this.passengerArray.length; i++) {
-                if(this.passengerArray[i].isHealthy == false) {
-                    //someone is sick so - it is true that they are sick
-                    return true;
-                }
-            }
-            return false;
-     
-        }
+  
 
         getFood(): number {
             let totalFood = 0;
@@ -93,16 +84,18 @@
             }
            return totalFood
         }
+        isQuarantined(): boolean {
+            // console.log("passed array" + JSON.stringify(this.passengerArray))
+            for (let i = 0; i < this.passengerArray.length; i++) {
+                if (this.passengerArray[i].isHealthy === false) {
+                    //someone is sick so - it is true that they are sick
+                    return true;
+                }
+            }
+            return false;
 
-        // lottery(passengerArray, wagon) {
-        //     passengerArray.forEach(function () {
-        //         if (Math.floor(Math.random() * 2) == 0) {
-        //             wagon.addPassenger;
-        //         } else {
-        //             return "better luck next time BITCH";
-        //         }
-        //     })
-        // }
+        }
+
 }
 
 
